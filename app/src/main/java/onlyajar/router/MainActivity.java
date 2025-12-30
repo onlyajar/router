@@ -8,6 +8,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -20,13 +22,9 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        try {
-            ServiceClassLoader.load(Runnable.class).getClass("pay").newInstance().run();
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        } catch (InstantiationException e) {
-            throw new RuntimeException(e);
-        }
+        List<Class<Runnable>> runs = Router.getAllServiceClasses(Runnable.class);
+        Class<Runnable> payClass = Router.getServiceClass(Runnable.class, "pay");
+        Runnable payRun = Router.getService(Runnable.class, "pay");
     }
 
 }
