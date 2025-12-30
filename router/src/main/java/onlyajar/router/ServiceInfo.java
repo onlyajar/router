@@ -1,6 +1,6 @@
 package onlyajar.router;
 
-public class ServiceInfo {
+class ServiceInfo {
     private final String key;
     private final Class implementationClazz;
     private final int priority;
