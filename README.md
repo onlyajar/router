@@ -34,4 +34,8 @@ Runnable payRun = Router.getService(Runnable.class, "pay");
 
 ```
 
+### proguard
+```text
+-keep @com.google.auto.service.AutoService class * { *; }
+```
 
