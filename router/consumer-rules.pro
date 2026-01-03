@@ -1,0 +1,2 @@
+-keep @interface com.google.auto.service.AutoService { *; }
+-keep @com.google.auto.service.AutoService class * {*;}
