@@ -39,7 +39,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
 group = 'com.github.onlyajar'
-version = '0.0.1.beta2'
+version = '0.0.2'
 afterEvaluate {
     publishing {
         publications {
