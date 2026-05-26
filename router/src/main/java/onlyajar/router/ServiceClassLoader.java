@@ -8,6 +8,8 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -248,8 +250,10 @@ public final class ServiceClassLoader<S> implements Iterable<Class<S>> {
     }
 
     public <T extends S> List<Class<T>> getAllClasses() {
-        List<Class<T>> list = new ArrayList<>(serviceInfoHashMap.size());
-        for (ServiceInfo serviceInfo : serviceInfoHashMap.values()) {
+        List<ServiceInfo> serviceInfos = new ArrayList<>(serviceInfoHashMap.values());
+        Collections.sort(serviceInfos, (o1, o2) -> Integer.compare(o1.getPriority(), o2.getPriority()));
+        List<Class<T>> list = new ArrayList<>();
+        for (ServiceInfo serviceInfo : serviceInfos) {
             Class<T> clazz = (Class<T>) serviceInfo.getImplementationClazz();
             if (clazz != null) {
                 list.add(clazz);

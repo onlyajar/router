@@ -23,8 +23,14 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         List<Class<Runnable>> runs = Router.getAllServiceClasses(Runnable.class);
-        Class<Runnable> payClass = Router.getServiceClass(Runnable.class, "pay");
-        Runnable payRun = Router.getService(Runnable.class, "pay");
+        for (Class<Runnable> classRun: runs
+             ) {
+            try {
+                classRun.newInstance().run();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
 }
